@@ -1,0 +1,77 @@
+CREATE OR REPLACE PACKAGE BODY "HR"."OBE" IS
+  -- procedure that processes the incoming associative arrays
+  -- calls the method IS_PRIME to determine if element is likely prime
+  PROCEDURE "DETERMINE_PRIMES" ("P_IN_VALUES" IN T_IN_VALUES, 
+          "P_OUT_VALUES" OUT T_OUT_VALUES) IS
+  BEGIN
+    -- loop through each element in the incoming array
+    -- and set the value for the corresponding element
+    -- in the out array
+    for i in p_in_values.first..p_in_values.last
+    loop
+      p_out_values(i) := is_prime(p_in_values(i));
+    end loop;
+  END "DETERMINE_PRIMES";
+  -- private function to determine if a number is likely prime
+  FUNCTION "IS_PRIME" ("P_NUMBER" IN NUMBER) RETURN NUMBER IS
+    l_sqrt            number := 0;
+    l_sqrt_ceil       number := 0;
+    l_divisor         number := 0;
+    l_divisor_squared number := 0;
+  begin
+    -- prime numbers must be >= 2
+    if p_number < 2 then
+      return IS_NOT_A_PRIME;
+    end if;
+    -- only integers can be prime
+    if p_number != ceil(p_number) then
+      return IS_NOT_A_PRIME;
+    end if;
+    -- 2 is the only even prime, so it is a special case
+    if p_number = 2 then
+      return IS_A_PRIME;
+    end if;
+    -- eliminate all other even numbers
+    if mod(p_number,2) = 0 then
+      return IS_NOT_A_PRIME;
+    end if;
+    -- if the sqrt of the number is an integer, the number is not prime
+    l_sqrt := sqrt(p_number);
+    l_sqrt_ceil := ceil(l_sqrt);
+    if l_sqrt = l_sqrt_ceil then
+      return IS_NOT_A_PRIME;
+    end if;
+    -- the number has passed the basic elimination tests and may be prime
+    -- loop through set of odd divisors to determine if number is prime
+    l_divisor := 3;
+    for i in 1..l_sqrt_ceil
+    loop
+      l_divisor_squared := l_divisor * l_divisor;
+      -- if l_divisor is a factor of p_number, then not a prime
+      if mod(p_number,l_divisor) = 0 and l_divisor_squared < p_number then
+        return IS_NOT_A_PRIME;
+      end if;
+      -- no factor found, therefore number is likely a prime
+      if l_divisor_squared > p_number then
+        return IS_A_PRIME;
+      end if;
+      l_divisor := l_divisor + 2;
+    end loop;
+  END "IS_PRIME";
+  -- pl/sql procedure to add new job to jobs table
+  PROCEDURE "ADD_NEW_JOB" ("P_JOB_ID" IN JOBS.JOB_ID%TYPE,
+                           "P_JOB_TITLE" IN JOBS.JOB_TITLE%TYPE,
+                           "P_MIN_SALARY" IN JOBS.MIN_SALARY%TYPE,
+                           "P_MAX_SALARY" IN JOBS.MAX_SALARY%TYPE) IS
+  BEGIN
+    -- use the package variable JOBS_REC to create new record
+    jobs_rec.job_id := p_job_id;
+    jobs_rec.job_title := p_job_title;
+    jobs_rec.min_salary := p_min_salary;
+    jobs_rec.max_salary := p_max_salary;    
+    -- insert the job record into the table
+    insert into jobs (job_id, job_title, min_salary, max_salary)
+    values (jobs_rec.job_id, jobs_rec.job_title, 
+            jobs_rec.min_salary, jobs_rec.max_salary);
+  END "ADD_NEW_JOB";
+END "OBE";

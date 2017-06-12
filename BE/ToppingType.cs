@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class ToppingType
+    public class ToppingType
     {
         //Members
         private int topTypeID;

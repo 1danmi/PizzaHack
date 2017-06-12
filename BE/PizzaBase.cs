@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class PizzaBase
+    public class PizzaBase
     {
         //Members
         private int baseID;

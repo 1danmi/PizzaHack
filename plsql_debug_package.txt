@@ -1,0 +1,28 @@
+CREATE OR REPLACE PACKAGE "HR"."OBE" IS
+ -- types for associative arrays that client will pass as arguments
+ TYPE "T_IN_VALUES" IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+ TYPE "T_OUT_VALUES" IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+   
+   -- procedure that accepts two associative arrays
+   -- determines if an element is likely prime and
+   -- sets value in output array
+   PROCEDURE "DETERMINE_PRIMES" ("P_IN_VALUES" IN T_IN_VALUES,
+            "P_OUT_VALUES" OUT T_OUT_VALUES);
+ 
+   -- function that determines if a number is likely prime
+   FUNCTION "IS_PRIME" ("P_NUMBER" IN NUMBER) RETURN NUMBER;
+  
+   -- constants used to return values from function
+   IS_NOT_A_PRIME CONSTANT NUMBER DEFAULT 0;
+   IS_A_PRIME CONSTANT NUMBER DEFAULT 1;
+
+    -- pl/sql record type for the jobs table
+ "JOBS_REC" jobs%rowtype;
+
+    -- pl/sql procedure to add new job to jobs table
+   PROCEDURE "ADD_NEW_JOB" ("P_JOB_ID" IN JOBS.JOB_ID%TYPE,
+ "P_JOB_TITLE" IN JOBS.JOB_TITLE%TYPE,
+ "P_MIN_SALARY" IN JOBS.MIN_SALARY%TYPE,
+ "P_MAX_SALARY" IN JOBS.MAX_SALARY%TYPE);
+
+ END "OBE";

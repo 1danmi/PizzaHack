@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Employee
+    public class Employee
     {
         //Members
         private int employeeID;
@@ -55,7 +55,7 @@ namespace BE
             this.employeeName = null;
             this.shomerShabat = false;
             this.storeID = 0;
-            this.rankID = null;
+            this.rankID = 0;
         }
 
        

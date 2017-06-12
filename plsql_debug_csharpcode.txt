@@ -1,0 +1,163 @@
+using System;
+using System.Data;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
+
+namespace plsqldebugobe1
+{
+  /// <summary>
+  /// Summary description for Class1.
+  /// </summary>
+  class Program
+  {
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main(string[] args)
+    {
+      try
+      {
+      // constants used to represent values returned
+      // from the pl/sql procedure call
+      const int IS_NOT_A_PRIME = 0;
+      const int IS_A_PRIME = 1;
+
+      // display progress message
+      Console.WriteLine("Testing array for prime numbers...\n");
+
+      // connection string: adjust for your environment
+      string constr = "User Id=hr; Password=hr; Data Source=ORCL; enlist=false; pooling=false";
+
+      // create and open connection object
+      OracleConnection con = new OracleConnection(constr);
+      con.Open();
+
+      // create command object for the function call
+      OracleCommand cmd = new OracleCommand();
+      cmd.Connection = con;
+      cmd.CommandText = "OBE.determine_primes";
+
+      // set the proper command type
+      cmd.CommandType = CommandType.StoredProcedure;
+
+      // parameter object for the input array
+      OracleParameter p_in_values = new OracleParameter();
+      p_in_values.OracleDbType = OracleDbType.Decimal;
+      p_in_values.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+      p_in_values.Value = new decimal[10]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+      p_in_values.Size = 10;
+      p_in_values.Direction = ParameterDirection.Input;
+
+      // parameter object for the output array
+      OracleParameter p_out_values = new OracleParameter();
+      p_out_values.OracleDbType = OracleDbType.Decimal;
+      p_out_values.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+      p_out_values.Value = null;
+      p_out_values.Size = 10;
+      p_out_values.Direction = ParameterDirection.Output;
+
+      // add parameters to the collection
+      // they must be added in the proper
+      // order when using bind by position (the default)
+      cmd.Parameters.Add(p_in_values);
+      cmd.Parameters.Add(p_out_values);
+
+      // execute the pl/sql procedure to populate output array
+      cmd.ExecuteNonQuery();
+
+      // display results to console window
+      for (int i = 0; i < p_in_values.Size; i++)
+      {
+        foreach (OracleParameter p in cmd.Parameters)
+        {
+          // the input array is treated as System.Decimal[]
+          // within the .NET code
+          if (p.Value is System.Decimal[])
+          {
+            Console.Write("The Number {0} ", ((p.Value as System.Decimal[])[i]).ToString());
+          }
+
+          // the output array is treated as OracleDecimal[]
+          // within the .NET code
+          if (p.Value is OracleDecimal[])
+          {
+            if (((p.Value as OracleDecimal[])[i]).ToInt32() == IS_NOT_A_PRIME)
+            {
+              Console.WriteLine("is not a prime number!");
+            }
+            else if (((p.Value as OracleDecimal[])[i]).ToInt32() == IS_A_PRIME)
+            {
+              Console.WriteLine("is a prime number!");
+            }
+          }
+        }
+      }
+
+      // display a separator line
+      Console.WriteLine();
+
+      // display progress message
+      Console.WriteLine("Using PL/SQL record...\n");
+
+      // remove parameters from command collection
+      // and set new command text
+      cmd.Parameters.Clear();
+      cmd.CommandText = "obe.add_new_job";
+
+      // parameter object for the job_id
+      OracleParameter p_job_id = new OracleParameter();
+      p_job_id.Value = "IT_DBA";
+
+      // parameter object for the job_title
+      OracleParameter p_job_title = new OracleParameter();
+      p_job_title.Value = "Database Administrator";
+
+      // parameter object for the min_salary
+      OracleParameter p_min_salary = new OracleParameter();
+      p_min_salary.OracleDbType = OracleDbType.Decimal;
+      p_min_salary.Value = 10000;
+
+      // parameter object for the max_salary
+      OracleParameter p_max_salary = new OracleParameter();
+      p_max_salary.OracleDbType = OracleDbType.Decimal;
+      p_max_salary.Value = 15000;
+
+      // add parameters to collection
+      cmd.Parameters.Add(p_job_id);
+      cmd.Parameters.Add(p_job_title);
+      cmd.Parameters.Add(p_min_salary);
+      cmd.Parameters.Add(p_max_salary);
+
+      // execute the pl/sql procedure to add new job
+      cmd.ExecuteNonQuery();
+
+      // display simple message to indicate procedure completed
+      Console.WriteLine("New job successfully created!");
+
+      // display a separator line
+      Console.WriteLine();
+
+      // Simple prompt to prevent the console from closing
+      // when running from the IDE
+      Console.WriteLine("Press ENTER to continue...");
+      Console.ReadLine();
+
+      // clean up objects
+      p_max_salary.Dispose();
+      p_min_salary.Dispose();
+      p_job_title.Dispose();
+      p_job_id.Dispose();
+      p_out_values.Dispose();
+      p_in_values.Dispose();
+      cmd.Dispose();
+      con.Dispose();
+      }
+          catch (Exception e)
+          {
+              Console.WriteLine(e.Message);
+              Console.WriteLine(e.StackTrace);
+          }
+    }
+  }
+}

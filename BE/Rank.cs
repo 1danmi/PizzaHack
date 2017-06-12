@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Rank
+    public class Rank
     {
         //Members
         private int rankID;

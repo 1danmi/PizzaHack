@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Customer
+    public class Customer
     {
         //Members
         private int custID;
         private String custName;
-        private String CustAddress;
+        private String custAddress;
         private String custCc;
         private int custCredit;
 
         //Properties
         public int CustID { get => custID; set => custID = value; }
         public String CustName { get => custName; set => custName = value; }
-        public String CustAddress1 { get => CustAddress; set => CustAddress = value; }
+        public String CustAddress { get => custAddress; set => custAddress = value; }
         public String CustCc { get => custCc; set => custCc = value; }
         public int CustCredit { get => custCredit; set => custCredit = value; }
 
@@ -34,7 +34,7 @@ namespace BE
         {
             this.CustID = custID;
             this.CustName = custName;
-            CustAddress1 = custAddress;
+            CustAddress = custAddress;
             this.CustCc = custCc;
             this.CustCredit = custCredit;
         }
@@ -46,9 +46,18 @@ namespace BE
         {
             this.CustID = 0;
             this.CustName = null;
-            CustAddress1 = null;
+            this.CustAddress = null;
             this.CustCc = null;
             this.CustCredit = 0;
+        }
+
+        public override string ToString()
+        {
+            return this.CustID.ToString() + "\t" 
+                + this.CustName + "\t" 
+                + this.CustAddress + "\t"
+                + this.CustCc + "\t"
+                + this.CustCredit;
         }
     }
 }
