@@ -10,16 +10,16 @@ namespace BE
     {
         //Members
         private int custID;
-        private String custName;
-        private String custAddress;
-        private String custCc;
+        private string custName;
+        private string custAddress;
+        private string custCc;
         private int custCredit;
 
         //Properties
         public int CustID { get => custID; set => custID = value; }
-        public String CustName { get => custName; set => custName = value; }
-        public String CustAddress { get => custAddress; set => custAddress = value; }
-        public String CustCc { get => custCc; set => custCc = value; }
+        public string CustName { get => custName; set => custName = value; }
+        public string CustAddress { get => custAddress; set => custAddress = value; }
+        public string CustCc { get => custCc; set => custCc = value; }
         public int CustCredit { get => custCredit; set => custCredit = value; }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace BE
         /// <param name="custAddress"> The customer's address</param>
         /// <param name="custCc">The 4 last digits og the customer's credit card</param>
         /// <param name="custCredit">The credit the customer had gained</param>
-        public Customer(int custID, String custName, String custAddress, String custCc, int custCredit)
+        public Customer(int custID, string custName, string custAddress, string custCc, int custCredit)
         {
             this.CustID = custID;
             this.CustName = custName;

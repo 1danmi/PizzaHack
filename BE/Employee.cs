@@ -13,7 +13,7 @@ namespace BE
     {
         //Members
         private int employeeID;
-        private String employeeName;
+        private string employeeName;
         private DateTime bod;
         private bool shomerShabat;
         private int storeID;
@@ -25,7 +25,7 @@ namespace BE
         public DateTime Bod { get => bod; set => bod = value; }
         public bool ShomerShabat { get => shomerShabat; set => shomerShabat = value; }
         public int StoreID { get => storeID; set => storeID = value; }
-        public int intID { get => rankID; set => rankID = value; }
+        public int RankID { get => rankID; set => rankID = value; }
 
         /// <summary>
         /// Class constructors
@@ -58,6 +58,16 @@ namespace BE
             this.rankID = 0;
         }
 
-       
+        public override string ToString()
+        {
+            return this.employeeID + "\t" 
+                + this.employeeName + "\t" 
+                + this.bod.Date + "\t" 
+                + this.shomerShabat + "\t" 
+                + this.storeID + "\t" 
+                + this.rankID;
+        }
+
+
     }
 }

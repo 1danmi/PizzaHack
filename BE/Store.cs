@@ -10,17 +10,41 @@ namespace BE
     {
         //Members
         private int storeID;
-        private String storeName;
-        private String storeURL;
-        private String phoneNumber;
-        private bool kosher;
+        private string storeName;
+        private string storeURL;
+        private string phoneNumber;
+        private bool   kosher;
 
         //Properties
-        public int StoreID { get => storeID; set => storeID = value; }
-        public String StoreName { get => storeName; set => storeName = value; }
-        public String StoreURL { get => storeURL; set => storeURL = value; }
-        public String PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        public bool Kosher { get => kosher; set => kosher = value; }
+        public int StoreID
+        {
+            get => storeID;
+            set => storeID = value;
+        }
+
+        public string StoreName
+        {
+            get => storeName;
+            set => storeName = value;
+        }
+
+        public string StoreURL
+        {
+            get => storeURL;
+            set => storeURL = value;
+        }
+
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set => phoneNumber = value;
+        }
+
+        public bool Kosher
+        {
+            get => kosher;
+            set => kosher = value;
+        }
 
         /// <summary>
         /// Class constaructor
@@ -30,7 +54,7 @@ namespace BE
         /// <param name="storeURL">The store's website</param>
         /// <param name="phoneNumber">The store's phone number</param>
         /// <param name="kosher">Boolean represents whether the store is kosher or not</param>
-        public Store(int storeID, String storeName, String storeURL, String phoneNumber, bool kosher)
+        public Store(int storeID, string storeName, string storeURL, string phoneNumber, bool kosher)
         {
             this.storeID = storeID;
             this.storeName = storeName;
@@ -51,8 +75,13 @@ namespace BE
             this.kosher = false;
         }
 
-        
-
-
+        public override string ToString()
+        {
+            return storeID + "\t"
+                   + storeName + "\t"
+                   + storeURL + "\t"
+                   + phoneNumber + "\t"
+                   + kosher;
+        }
     }
 }

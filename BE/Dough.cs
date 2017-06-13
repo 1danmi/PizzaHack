@@ -10,7 +10,7 @@ namespace BE
     {
         //Members
         private int doughID;
-        private String name;
+        private string name;
 
         //Properties
         public int DoughID { get => doughID; set => doughID = value; }
@@ -33,6 +33,11 @@ namespace BE
         {
             this.doughID = 0;
             this.name = "";
+        }
+
+        public override string ToString()
+        {
+            return doughID + "\t" + name;
         }
     }
 }

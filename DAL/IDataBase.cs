@@ -7,7 +7,7 @@ using BE;
 
 namespace DAL
 {
-    public interface IDataBase
+    public interface IDatabase
     {
         #region Customer
 
@@ -17,13 +17,11 @@ namespace DAL
 
         void updateCustomer(int custID, Customer s);
 
-        Customer getDish(int custID);
+        Customer getCustomer(int custID);
 
         #endregion
 
         #region Dough
-
-    
 
         void addDough(Dough d);
 
@@ -37,8 +35,6 @@ namespace DAL
 
         #region Employee
 
-       
-
         void addEmployee(Employee d);
 
         bool delEmployee(int empID);
@@ -46,7 +42,6 @@ namespace DAL
         void updateEmployee(int empID, Employee s);
 
         Employee getEmployee(int empID);
-
 
         #endregion
 
@@ -124,8 +119,6 @@ namespace DAL
 
         #region ToppingType
 
-       
-
         void addToppingType(ToppingType d);
 
         bool delToppingType(int TTID);
@@ -138,30 +131,38 @@ namespace DAL
 
         #region getLists
 
-        List<Customer> getCustomer();
+        List<Customer> getCustomers();
 
-        List<Dough> getDough();
+        List<Dough> getDoughs();
 
-        List<Employee> getEmployee();
+        List<Employee> getEmployees();
 
-        List<Order> getOrder();
+        List<Order> getOrders();
 
-        List<Pizza> getPizza();
+        List<Pizza> getPizzas();
 
-        List<PizzaBase> getPizzaBase();
+        List<PizzaBase> getPizzaBases();
 
-        List<PizzaBaseSize> getPizzaBaseSize();
+        List<PizzaBaseSize> getPizzaBaseSizes();
 
-        List<Rank> getRank();
+        List<Rank> getRanks();
 
-        List<Store> getStore();
+        List<Store> getStores();
 
-        List<ToppingType> getToppingType();
-
-       
+        List<ToppingType> getToppingTypes();
 
         #endregion
+ 
+    }
 
-        
+    public class FactoryDatabase
+    {
+        static IDatabase database = null;
+        public static IDatabase getDatabase()
+        {
+            if (database == null)
+                database = new Database();
+            return database;
+        }
     }
 }

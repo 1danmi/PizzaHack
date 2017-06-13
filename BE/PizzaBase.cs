@@ -40,6 +40,11 @@ namespace BE
             this.PbsID = 0;
             this.Dough = 0;
         }
-
+        public override string ToString()
+        {
+            return baseID + "\t"
+                + pbsID + "\t"
+                + dough;
+        }
     }
 }

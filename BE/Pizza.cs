@@ -50,5 +50,14 @@ namespace BE
             this.ToppingIdR = 0;
             this.PizzaID = 0;
         }
+
+        public override string ToString()
+        {
+            return pizzaID + "\t"
+                + baseID + "\t"
+                + orderID + "\t"
+                + toppingIdL + "\t"
+                + toppingIdR;
+        }
     }
 }

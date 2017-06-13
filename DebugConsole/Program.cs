@@ -8,15 +8,22 @@ using BE;
 
 namespace DebugConsole
 {
-    class Program
+    internal class Program
     {
-        
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            List<Customer> customers = Database.getCustomer();
-            foreach (Customer customer in customers)
+            try
             {
-                Console.WriteLine(customer.ToString());
+                var database = FactoryDatabase.getDatabase();
+                var toppingTypes = database.getToppingTypes();
+                foreach (var toppingType in toppingTypes.OrderBy(x => x.TopTypeID))
+                {
+                    Console.WriteLine(toppingType.ToString());
+                }
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             Console.ReadLine();
 

@@ -10,7 +10,7 @@ namespace BE
     {
         //Members
         private int rankID;
-        private String rankDescription;
+        private string rankDescription;
         private int rankSalary;
 
         //Properties
@@ -41,7 +41,12 @@ namespace BE
             this.RankSalary = 0;
         }
 
+        public override string ToString()
+        {
+            return rankID + "\t"
+                + rankDescription + "\t"
+                + rankSalary;
 
-
+        }
     }
 }

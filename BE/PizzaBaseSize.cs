@@ -10,7 +10,7 @@ namespace BE
     {
         //Members
         private int pbsID;
-        private String pdsSize;
+        private string pdsSize;
 
         //Properties
         public int PbsID { get => pbsID; set => pbsID = value; }
@@ -36,7 +36,10 @@ namespace BE
             this.PdsSize = null;
         }
 
-
-
+        public override string ToString()
+        {
+            return pbsID + "\t"
+                   + pdsSize;
+        }
     }
 }

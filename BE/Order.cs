@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Order
+    public class Order : IComparable
     {
         //Members
         private int orderID;
@@ -45,6 +45,17 @@ namespace BE
             this.custID = 0;
             this.storeID = 0;
         }
+        public override string ToString()
+        {
+            return orderID + "\t" 
+                + orderDeliv + "\t" 
+                + custID + "\t"
+                + storeID;
+    }
 
+        public int CompareTo(object obj)
+        {
+            return this.orderID.CompareTo((obj as Order).OrderID);
+        }
     }
 }

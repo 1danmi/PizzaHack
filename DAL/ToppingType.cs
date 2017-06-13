@@ -10,6 +10,7 @@ namespace BE
     {
         //Members
         private int topTypeID;
+
         private string topTypeName;
         private string topTypeType;
 
