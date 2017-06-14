@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Order : IComparable
+    public class Order
     {
-        //Members
-        private int orderID;
-        private bool orderDeliv;
-        private int custID;
-        private int storeID;
 
         //Properties
-        public int OrderID { get => orderID; set => orderID = value; }
-        public bool OrderDeliv { get => orderDeliv; set => orderDeliv = value; }
-        public int CustID { get => custID; set => custID = value; }
-        public int StoreID { get => storeID; set => storeID = value; }
+        public int OrderID { get; set; }
+
+        public bool OrderDeliv { get; set; }
+
+        public int CustID { get; set; }
+
+        public int StoreID { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -29,10 +27,10 @@ namespace BE
         /// <param name="storeID"> The ID of the store in which the order had placed</param>
         public Order(int orderID, bool orderDeliv, int custID, int storeID)
         {
-            this.orderID = orderID;
-            this.orderDeliv = orderDeliv;
-            this.custID = custID;
-            this.storeID = storeID;
+            this.OrderID = orderID;
+            this.OrderDeliv = orderDeliv;
+            this.CustID = custID;
+            this.StoreID = storeID;
         }
 
         /// <summary>
@@ -40,22 +38,19 @@ namespace BE
         /// </summary>
         public Order()
         {
-            this.orderID = 0;
-            this.orderDeliv = false;
-            this.custID = 0;
-            this.storeID = 0;
+            this.OrderID = 0;
+            this.OrderDeliv = false;
+            this.CustID = 0;
+            this.StoreID = 0;
         }
-        public override string ToString()
-        {
-            return orderID + "\t" 
-                + orderDeliv + "\t" 
-                + custID + "\t"
-                + storeID;
-    }
 
-        public int CompareTo(object obj)
-        {
-            return this.orderID.CompareTo((obj as Order).OrderID);
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{OrderID}\t{OrderDeliv}\t{CustID}\t{StoreID}";
+    
+
+        
     }
 }

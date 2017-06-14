@@ -9,28 +9,13 @@ namespace BE
     public class ToppingType
     {
         //Members
-        private int topTypeID;
-        private string topTypeName;
-        private string topTypeType;
 
         //Properties
-        public int TopTypeID
-        {
-            get => topTypeID;
-            set => topTypeID = value;
-        }
+        public int TopTypeID { get; set; }
 
-        public string TopTypeName
-        {
-            get => topTypeName;
-            set => topTypeName = value;
-        }
+        public string TopTypeName { get; set; }
 
-        public string TopTypeType
-        {
-            get => topTypeType;
-            set => topTypeType = value;
-        }
+        public string TopTypeType { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -56,13 +41,12 @@ namespace BE
         }
 
 
-
-        public override string ToString()
-        {
-            return TopTypeID + "\t"
-                   + TopTypeName + "\t"
-                   + TopTypeType;
-        }
+        /// <summary>
+        /// Overides toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{TopTypeID}\t{TopTypeName}\t{TopTypeType}";
+        
 
         
     }

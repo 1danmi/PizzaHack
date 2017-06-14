@@ -8,15 +8,13 @@ namespace BE
 {
     public class Rank
     {
-        //Members
-        private int rankID;
-        private string rankDescription;
-        private int rankSalary;
 
         //Properties
-        public int RankID { get => rankID; set => rankID = value; }
-        public string RankDescription { get => rankDescription; set => rankDescription = value; }
-        public int RankSalary { get => rankSalary; set => rankSalary = value; }
+        public int RankID { get; set; }
+
+        public string RankDescription { get; set; }
+
+        public int RankSalary { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -41,12 +39,13 @@ namespace BE
             this.RankSalary = 0;
         }
 
-        public override string ToString()
-        {
-            return rankID + "\t"
-                + rankDescription + "\t"
-                + rankSalary;
 
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{RankID}\t{RankDescription}\t{RankSalary}";
+
+        
     }
 }

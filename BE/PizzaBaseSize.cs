@@ -8,13 +8,11 @@ namespace BE
 {
     public class PizzaBaseSize
     {
-        //Members
-        private int pbsID;
-        private string pdsSize;
 
         //Properties
-        public int PbsID { get => pbsID; set => pbsID = value; }
-        public string PdsSize { get => pdsSize; set => pdsSize = value; }
+        public int PbsID { get; set; }
+
+        public string PdsSize { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -36,10 +34,11 @@ namespace BE
             this.PdsSize = null;
         }
 
-        public override string ToString()
-        {
-            return pbsID + "\t"
-                   + pdsSize;
-        }
+        /// <summary>
+        /// Overides toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{PbsID}\t{PdsSize}";
+        
     }
 }

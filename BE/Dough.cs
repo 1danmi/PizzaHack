@@ -8,13 +8,11 @@ namespace BE
 {
     public class Dough
     {
-        //Members
-        private int doughID;
-        private string name;
-
+        
         //Properties
-        public int DoughID { get => doughID; set => doughID = value; }
-        public string Name { get => name; set => name = value; }
+        public int DoughID { get; set; }
+
+        public string Name { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -23,21 +21,23 @@ namespace BE
         /// <param name="name">The dough's name</param>
         public Dough(int doughID, string name)
         {
-            this.doughID = doughID;
-            this.name = name;
+            this.DoughID = doughID;
+            this.Name = name;
         }
         /// <summary>
         /// Default constructor
         /// </summary>
         public Dough()
         {
-            this.doughID = 0;
-            this.name = "";
+            this.DoughID = 0;
+            this.Name = "";
         }
 
-        public override string ToString()
-        {
-            return doughID + "\t" + name;
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{DoughID}\t{Name}";
+        
     }
 }

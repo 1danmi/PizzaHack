@@ -8,15 +8,13 @@ namespace BE
 {
     public class PizzaBase
     {
-        //Members
-        private int baseID;
-        private int pbsID;
-        private int dough;
-
+        
         //Properties
-        public int BaseID { get => baseID; set => baseID = value; }
-        public int PbsID { get => pbsID; set => pbsID = value; }
-        public int Dough { get => dough; set => dough = value; }
+        public int BaseID { get; set; }
+
+        public int PbsID { get; set; }
+
+        public int Dough { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -40,11 +38,12 @@ namespace BE
             this.PbsID = 0;
             this.Dough = 0;
         }
-        public override string ToString()
-        {
-            return baseID + "\t"
-                + pbsID + "\t"
-                + dough;
-        }
+
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{BaseID}\t{PbsID}\t{Dough}";
+        
     }
 }

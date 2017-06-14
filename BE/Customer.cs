@@ -8,19 +8,17 @@ namespace BE
 {
     public class Customer
     {
-        //Members
-        private int custID;
-        private string custName;
-        private string custAddress;
-        private string custCc;
-        private int custCredit;
-
+      
         //Properties
-        public int CustID { get => custID; set => custID = value; }
-        public string CustName { get => custName; set => custName = value; }
-        public string CustAddress { get => custAddress; set => custAddress = value; }
-        public string CustCc { get => custCc; set => custCc = value; }
-        public int CustCredit { get => custCredit; set => custCredit = value; }
+        public int CustID { get; set; }
+
+        public string CustName { get; set; }
+
+        public string CustAddress { get; set; }
+
+        public string CustCc { get; set; }
+
+        public int CustCredit { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -51,13 +49,13 @@ namespace BE
             this.CustCredit = 0;
         }
 
-        public override string ToString()
-        {
-            return this.CustID.ToString() + "\t" 
-                + this.CustName + "\t" 
-                + this.CustAddress + "\t"
-                + this.CustCc + "\t"
-                + this.CustCredit;
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{CustID}\t{CustName}\t{CustAddress}\t{CustCc}\t{CustCredit}";
+
+
+
     }
 }

@@ -11,18 +11,19 @@ namespace DAL
 {
     public class Database : IDatabase
     {
-
-        private static string constr = "Data Source=XE;Persist Security Info=True;User ID=PizzaHack;Password=123";
+        private const string constr = "Data Source=XE;Persist Security Info=True;User ID=PizzaHack;Password=123";
 
         public static IEnumerable<Customer> getCustomerStored()
         {
-            OracleConnection con = new OracleConnection(constr);
+            var con = new OracleConnection(constr);
             con.Open();
-            OracleCommand cmd = new OracleCommand();
-            cmd.Connection = con;
+            var cmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "tables.getcustomertable",
+                CommandType = CommandType.StoredProcedure
+            };
 
-            cmd.CommandText = "tables.getcustomertable";
-            cmd.CommandType = CommandType.StoredProcedure;
 
             var reader = cmd.ExecuteNonQuery();
 

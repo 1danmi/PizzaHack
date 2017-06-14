@@ -8,19 +8,17 @@ namespace BE
 {
     public class Pizza
     {
-        //Members
-        private int baseID;
-        private int orderID;
-        private int toppingIdL;
-        private int toppingIdR;
-        private int pizzaID;
-
+     
         //Properties
-        public int BaseID { get => baseID; set => baseID = value; }
-        public int OrderID { get => orderID; set => orderID = value; }
-        public int ToppingIdL { get => toppingIdL; set => toppingIdL = value; }
-        public int ToppingIdR { get => toppingIdR; set => toppingIdR = value; }
-        public int PizzaID { get => pizzaID; set => pizzaID = value; } 
+        public int BaseID { get; set; }
+
+        public int OrderID { get; set; }
+
+        public int ToppingIdL { get; set; }
+
+        public int ToppingIdR { get; set; }
+
+        public int PizzaID { get; set; }
 
         /// <summary>
         /// Class constructor
@@ -51,13 +49,11 @@ namespace BE
             this.PizzaID = 0;
         }
 
-        public override string ToString()
-        {
-            return pizzaID + "\t"
-                + baseID + "\t"
-                + orderID + "\t"
-                + toppingIdL + "\t"
-                + toppingIdR;
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{PizzaID}\t{BaseID}\t{OrderID}\t{ToppingIdL}\tToppingIdR";
+        
     }
 }

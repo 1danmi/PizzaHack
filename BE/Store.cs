@@ -9,42 +9,17 @@ namespace BE
     public class Store
     {
         //Members
-        private int storeID;
-        private string storeName;
-        private string storeURL;
-        private string phoneNumber;
-        private bool   kosher;
 
         //Properties
-        public int StoreID
-        {
-            get => storeID;
-            set => storeID = value;
-        }
+        public int StoreID { get; set; }
 
-        public string StoreName
-        {
-            get => storeName;
-            set => storeName = value;
-        }
+        public string StoreName { get; set; }
 
-        public string StoreURL
-        {
-            get => storeURL;
-            set => storeURL = value;
-        }
+        public string StoreURL { get; set; }
 
-        public string PhoneNumber
-        {
-            get => phoneNumber;
-            set => phoneNumber = value;
-        }
+        public string PhoneNumber { get; set; }
 
-        public bool Kosher
-        {
-            get => kosher;
-            set => kosher = value;
-        }
+        public bool Kosher { get; set; }
 
         /// <summary>
         /// Class constaructor
@@ -56,11 +31,11 @@ namespace BE
         /// <param name="kosher">Boolean represents whether the store is kosher or not</param>
         public Store(int storeID, string storeName, string storeURL, string phoneNumber, bool kosher)
         {
-            this.storeID = storeID;
-            this.storeName = storeName;
-            this.storeURL = storeURL;
-            this.phoneNumber = phoneNumber;
-            this.kosher = kosher;
+            this.StoreID = storeID;
+            this.StoreName = storeName;
+            this.StoreURL = storeURL;
+            this.PhoneNumber = phoneNumber;
+            this.Kosher = kosher;
         }
 
         /// <summary>
@@ -68,20 +43,18 @@ namespace BE
         /// </summary>
         public Store()
         {
-            this.storeID = 0;
-            this.storeName = null;
-            this.storeURL = null;
-            this.phoneNumber = null;
-            this.kosher = false;
+            this.StoreID = 0;
+            this.StoreName = null;
+            this.StoreURL = null;
+            this.PhoneNumber = null;
+            this.Kosher = false;
         }
 
-        public override string ToString()
-        {
-            return storeID + "\t"
-                   + storeName + "\t"
-                   + storeURL + "\t"
-                   + phoneNumber + "\t"
-                   + kosher;
-        }
+        /// <summary>
+        /// Overides toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{StoreID}\t{StoreName}\t{StoreURL}\t{PhoneNumber}\t{Kosher}";
+        
     }
 }

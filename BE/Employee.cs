@@ -11,21 +11,19 @@ namespace BE
 {
     public class Employee
     {
-        //Members
-        private int employeeID;
-        private string employeeName;
-        private DateTime bod;
-        private bool shomerShabat;
-        private int storeID;
-        private int rankID;
 
         //Properties
-        public int EmployeeID { get => employeeID; set => employeeID = value; }
-        public string EmployeeName { get => employeeName; set => employeeName = value; }
-        public DateTime Bod { get => bod; set => bod = value; }
-        public bool ShomerShabat { get => shomerShabat; set => shomerShabat = value; }
-        public int StoreID { get => storeID; set => storeID = value; }
-        public int RankID { get => rankID; set => rankID = value; }
+        public int EmployeeID { get; set; }
+
+        public string EmployeeName { get; set; }
+
+        public DateTime Bod { get; set; }
+
+        public bool ShomerShabat { get; set; }
+
+        public int StoreID { get; set; }
+
+        public int RankID { get; set; }
 
         /// <summary>
         /// Class constructors
@@ -38,36 +36,33 @@ namespace BE
         /// <param name="rankID"> The employee's rank </param>
         public Employee(int employeeID, string employeeName, DateTime bod, bool shomerShabat, int storeID, int rankID)
         {
-            this.employeeID = employeeID;
-            this.employeeName = employeeName;
-            this.bod = bod;
-            this.shomerShabat = shomerShabat;
-            this.storeID = storeID;
-            this.rankID = rankID;
+            this.EmployeeID = employeeID;
+            this.EmployeeName = employeeName;
+            this.Bod = bod;
+            this.ShomerShabat = shomerShabat;
+            this.StoreID = storeID;
+            this.RankID = rankID;
         }
-        
+
         /// <summary>
         /// Default constructor
         /// </summary>
         public Employee()
         {
-            this.employeeID = 0;
-            this.employeeName = null;
-            this.shomerShabat = false;
-            this.storeID = 0;
-            this.rankID = 0;
+            this.EmployeeID = 0;
+            this.EmployeeName = null;
+            this.ShomerShabat = false;
+            this.StoreID = 0;
+            this.RankID = 0;
         }
 
-        public override string ToString()
-        {
-            return this.employeeID + "\t" 
-                + this.employeeName + "\t" 
-                + this.bod.Date + "\t" 
-                + this.shomerShabat + "\t" 
-                + this.storeID + "\t" 
-                + this.rankID;
-        }
+        /// <summary>
+        /// Overide toString function
+        /// </summary>
+        /// <returns> A string representation of the class</returns>
+        public override string ToString() => $"{EmployeeID}\t{EmployeeName}\t{Bod.Date}\t{ShomerShabat}\t{StoreID}\t{RankID}";
 
 
-    }
+
+}
 }

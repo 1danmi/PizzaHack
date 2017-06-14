@@ -15,10 +15,10 @@ namespace DebugConsole
             try
             {
                 var database = FactoryDatabase.getDatabase();
-                var toppingTypes = database.getToppingTypes();
-                foreach (var toppingType in toppingTypes.OrderBy(x => x.TopTypeID))
+                var customers = database.getCustomers();
+                foreach (var customer in customers.OrderBy(x => x.CustID))
                 {
-                    Console.WriteLine(toppingType.ToString());
+                    Console.WriteLine(customer.ToString());
                 }
             } 
             catch (Exception e)
