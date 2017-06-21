@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using BE;
+using DS;
+
 
 namespace DebugConsole
 {
@@ -14,11 +16,11 @@ namespace DebugConsole
         {
             try
             {
-                var database = FactoryDatabase.getDatabase();
-                var customers = database.getCustomers();
-                foreach (var customer in customers.OrderBy(x => x.CustID))
+                var db = FactoryDatabase.getDatabase();
+                db.loadLists();
+                foreach (var employee in DataSource.employees)
                 {
-                    Console.WriteLine(customer.ToString());
+                    Console.WriteLine(employee.Bod.Date.ToString("d"));
                 }
             } 
             catch (Exception e)

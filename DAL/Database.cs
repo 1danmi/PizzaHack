@@ -4,15 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
-using Oracle.DataAccess.Client;
+using System.Security.Cryptography;
+using DS;
 using System.Data;
+using System.Windows.Forms;
+using Oracle.DataAccess.Client;
+//using System.Data.OracleClient;
+
+
+
 
 namespace DAL
 {
     public class Database : IDatabase
     {
+        
         private const string constr = "Data Source=XE;Persist Security Info=True;User ID=PizzaHack;Password=123";
-
+        private static readonly OracleDataAdapter customerAdapter = new OracleDataAdapter();
+        private static OracleConnection objConn = new OracleConnection(constr);
         public static IEnumerable<Customer> getCustomerStored()
         {
             var con = new OracleConnection(constr);
@@ -29,6 +38,22 @@ namespace DAL
 
             return null;
         }
+
+        public void loadLists()
+        {
+            setCustomerFunctions();
+            getCustomers2();
+            DataSource.doughs = getDoughs();
+            DataSource.employees = getEmployees();
+            DataSource.orders = getOrders();
+            DataSource.pizzas = getPizzas();
+            DataSource.pizzasBase = getPizzaBases();
+            DataSource.pbSize = getPizzaBaseSizes();
+            DataSource.ranks = getRanks();
+            DataSource.stores = getStores();
+            DataSource.toppingTypes = getToppingTypes();
+        }
+        
 
 
         #region Customer
@@ -299,6 +324,108 @@ namespace DAL
             return customers;
         }
 
+        public void setCustomerFunctions()
+        {
+//            using (var objConn = new OracleConnection(constr))
+//            {
+
+
+                var objCmd = new OracleCommand
+                {
+                    Connection = objConn,
+                    CommandText = "Tables.getCustomerTable",
+                    CommandType = CommandType.StoredProcedure
+                };
+                objCmd.Parameters.Add("table_out", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                customerAdapter.SelectCommand = objCmd;
+
+                var objInsertCmd = new OracleCommand
+                {
+                    Connection = objConn,
+                    CommandText = "Tables.insert_customer",
+                    CommandType = CommandType.StoredProcedure
+                };
+                objInsertCmd.Parameters.Add("p_CUSTID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTNAME", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTADDRESS", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTPHONENUM", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTCC", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CREDIT", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+                customerAdapter.InsertCommand = objInsertCmd;
+
+                var objUpdateCmd = new OracleCommand
+                {
+                    Connection = objConn,
+                    CommandText = "Tables.update_customer",
+                    CommandType = CommandType.StoredProcedure
+                };
+                objInsertCmd.Parameters.Add("p_CUSTID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTNAME", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTADDRESS", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTPHONENUM", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CUSTCC", OracleDbType.Varchar2).Direction = ParameterDirection.Input;
+                objInsertCmd.Parameters.Add("p_CREDIT", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+                customerAdapter.UpdateCommand = objUpdateCmd;
+
+                var objDeleteCmd = new OracleCommand
+                {
+                    Connection = objConn,
+                    CommandText = "human_resources.delete_employee",
+                    CommandType = CommandType.StoredProcedure
+                };
+                objDeleteCmd.Parameters.Add("p_CUSTID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+                customerAdapter.DeleteCommand = objDeleteCmd;
+
+//                try
+//                {
+//                    DataTable dtEmp = new DataTable();
+//                    customerAdapter.Fill(dtEmp);
+//
+//                    System.Console.WriteLine("Employee count = {0}", dtEmp.Rows.Count);
+//                    dtEmp.Rows.Add(7935, "John", "Manager", 7782, DateTime.Now, 1300, 0, 10);
+//
+//                    customerAdapter.Update(dtEmp);
+//
+//                }
+//                catch (Exception ex)
+//                {
+//                    System.Console.WriteLine("Exception: {0}", ex.ToString());
+//                }
+//
+//                objConn.Close();
+//            }
+        }
+
+        public void getCustomers2()
+        {
+//            using (var objConn = new OracleConnection(constr))
+//            {
+//                var objCmd = new OracleCommand
+//                {
+//                    Connection = objConn,
+//                    CommandText = "Tables.getCustomerTable",
+//                    CommandType = CommandType.StoredProcedure
+//                };
+//                
+//                objCmd.Parameters.Add("table_out", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+//                customerAdapter.SelectCommand = objCmd;
+
+                try
+                {
+                    //                    objConn.Open();
+                    //                    objCmd.ExecuteNonQuery();
+                    //                    var da = new OracleDataAdapter(objCmd);
+                    customerAdapter.Fill(DataSource.customers);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+//                objConn.Close();
+                
+//            }
+        }
+
         public List<Dough> getDoughs()
         {
             var con = new OracleConnection(constr);
@@ -340,7 +467,7 @@ namespace DAL
                     EmployeeID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("EMPLOYEEID"))),
                     EmployeeName = reader.GetString(reader.GetOrdinal("EMPLOYEENAME")),
                     Bod = reader.GetDateTime(reader.GetOrdinal("BOD")),
-                    ShomerShabat = reader.GetString(reader.GetOrdinal("SHOMERSHABAT")) == "1" ? true : false,
+                    ShomerShabat = reader.GetString(reader.GetOrdinal("SHOMERSHABAT")) == "1",
                     StoreID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("STOREID"))),
                     RankID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("RANKID")))
                 });
@@ -365,7 +492,7 @@ namespace DAL
                 orders.Add(new Order
                 {
                     OrderID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("ORDERID"))),
-                    OrderDeliv = reader.GetString(reader.GetOrdinal("ORDERDELIV")) == "1" ? true : false,
+                    OrderDeliv = reader.GetString(reader.GetOrdinal("ORDERDELIV")) == "1",
                     CustID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("CUSTID"))),
                     StoreID = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("STOREID")))
                 });
@@ -421,7 +548,6 @@ namespace DAL
             }
             return pizzaBases;
         }
-
 
         public List<PizzaBaseSize> getPizzaBaseSizes()
         {
@@ -492,7 +618,7 @@ namespace DAL
                     StoreName = reader.GetString(reader.GetOrdinal("STORENAME")),
                     StoreURL = reader.GetString(reader.GetOrdinal("STOREURL")),
                     PhoneNumber = reader.GetString(reader.GetOrdinal("PHONENUMBER")),
-                    Kosher = reader.GetString(reader.GetOrdinal("KOSHER")) == "T" ? true : false,
+                    Kosher = reader.GetString(reader.GetOrdinal("KOSHER")) == "T",
 
                 });
             }
@@ -523,7 +649,29 @@ namespace DAL
             return toppingTypes;
         }
 
+        public int getNewCustomerID()
+        {
+            bool flag;
+            int i;
+            for (i = 1; i < 100000; i++)
+            {
+                flag = true;
+                foreach (var customer in DataSource.getCustomerList())
+                {
+                    if (i == customer.CustID)
+                    {
+                        flag =false;
+                        break;
+                    }
+                }
+                if (flag)
+                    return i;
+            }
+            return i;
+        }
         #endregion
+
+
     }
 }
 

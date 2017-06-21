@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugConsole", "DebugConsol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{F5518A82-B543-44E3-A53C-E40A02D0E99C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL_Material", "PL_Material\PL_Material.csproj", "{10524FDA-64BA-4606-80EF-F8A74A810C6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,14 @@ Global
 		{F5518A82-B543-44E3-A53C-E40A02D0E99C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5518A82-B543-44E3-A53C-E40A02D0E99C}.Release|x86.ActiveCfg = Release|Any CPU
 		{F5518A82-B543-44E3-A53C-E40A02D0E99C}.Release|x86.Build.0 = Release|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Debug|x86.Build.0 = Debug|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Release|x86.ActiveCfg = Release|Any CPU
+		{10524FDA-64BA-4606-80EF-F8A74A810C6F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

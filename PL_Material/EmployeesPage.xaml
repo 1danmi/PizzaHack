@@ -1,0 +1,54 @@
+﻿<Page x:Class="PL_Material.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL_Material"
+      xmlns:BE="clr-namespace:BE;assembly=BE"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="NewOrderPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="64"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="0" Fill="#FF212121" Grid.ColumnSpan="4" Stroke="#00000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <Rectangle.Effect>
+                <DropShadowEffect Direction="270" ShadowDepth="2" Color="#FF424242" BlurRadius="3"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <DataGrid x:Name="employeesDataGrid" IsReadOnly="True" d:DataContext="{d:DesignInstance Type=BE:Employee}"  AutoGenerateColumns="False"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CanUserSortColumns="True" CanUserAddRows="False" Width="auto" Height="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding EmployeeID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding EmployeeName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date of Birth" Binding="{Binding Bod, Converter={StaticResource DateTimetoDateConverter}}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Shomer Shabbat" Binding="{Binding ShomerShabat}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="Store Name" Binding="{Binding StoreID, Converter={StaticResource StoreIDtoNameConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rank" Binding="{Binding RankID, Converter={StaticResource RankIDtoNameConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Salary" Binding="{Binding RankID, Converter={StaticResource RankIDtoSalaryConverter}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
+            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
+        </Button>
+        <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
+
+
+    </Grid>
+</Page>

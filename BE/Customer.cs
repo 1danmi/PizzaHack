@@ -16,6 +16,8 @@ namespace BE
 
         public string CustAddress { get; set; }
 
+        public string CustPhoneNum { get; set; }
+
         public string CustCc { get; set; }
 
         public int CustCredit { get; set; }
@@ -28,11 +30,12 @@ namespace BE
         /// <param name="custAddress"> The customer's address</param>
         /// <param name="custCc">The 4 last digits og the customer's credit card</param>
         /// <param name="custCredit">The credit the customer had gained</param>
-        public Customer(int custID, string custName, string custAddress, string custCc, int custCredit)
+        public Customer(int custID, string custName, string custAddress, string custPhoneNum, string custCc, int custCredit)
         {
             this.CustID = custID;
             this.CustName = custName;
-            CustAddress = custAddress;
+            this.CustAddress = custAddress;
+            this.CustPhoneNum = custPhoneNum;
             this.CustCc = custCc;
             this.CustCredit = custCredit;
         }
@@ -45,6 +48,7 @@ namespace BE
             this.CustID = 0;
             this.CustName = null;
             this.CustAddress = null;
+            this.CustPhoneNum = null;
             this.CustCc = null;
             this.CustCredit = 0;
         }

@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BE;
+using BL;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace PL
 {
@@ -20,9 +24,46 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+            //MainFrame.Navigate(new MainPage());
+
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            //bl.saveODToXML("ODXmlBySerilalizer.xml");
+            this.Close();
+        }
+
+        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (this.WindowState == WindowState.Normal)
+            //    this.WindowState = WindowState.Maximized;
+            //else
+            //    this.WindowState = WindowState.Normal;
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Exception", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            }
+        }
+
+
     }
 }

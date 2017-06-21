@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using Oracle.DataAccess.Client;
 
 namespace DAL
 {
     public interface IDatabase
     {
+        void getCustomers2();
+
+        void loadLists();
+
         #region Customer
 
         void addCustomer(Customer d);
@@ -151,18 +156,18 @@ namespace DAL
 
         List<ToppingType> getToppingTypes();
 
+        int getNewCustomerID();
+
         #endregion
- 
+
     }
 
     public class FactoryDatabase
     {
-        static IDatabase database = null;
+        private static IDatabase database = null;
         public static IDatabase getDatabase()
         {
-            if (database == null)
-                database = new Database();
-            return database;
+            return database ?? (database = new Database());
         }
     }
 }

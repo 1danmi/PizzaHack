@@ -1,0 +1,65 @@
+﻿<Page x:Class="PL_Material.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL_Material"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1000"
+      Title="MainPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="64"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="0" Fill="#FF212121" Grid.ColumnSpan="4" Stroke="#00000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <Rectangle.Effect>
+                <DropShadowEffect Direction="270" ShadowDepth="2" Color="#FF424242" BlurRadius="3"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
+
+        <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" Content="Welcome!" VerticalAlignment="Center" FontSize="85" FontFamily="Roboto Light" />
+
+        <materialDesign:Card x:Name="newOrderCard" Margin="16,16,16,16" Grid.Row="2" Grid.Column="1" Height="310" HorizontalAlignment="Stretch" MouseDown="newOrderCard_MouseDown">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="236*"/>
+                    <RowDefinition Height="74*"/>
+                </Grid.RowDefinitions>
+                <Image HorizontalAlignment="Stretch" Grid.Row ="0"  VerticalAlignment="Stretch" Source="new_pizza_order.jpeg" Stretch="UniformToFill"/>
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Grid.Row="1" Margin="8" FontFamily="Roboto Light"> New Order </TextBlock>
+            </Grid>
+
+        </materialDesign:Card>
+        <materialDesign:Card x:Name="managementCard" Margin="16,16,16,16" Grid.Row="2" Grid.Column="2" Height="310" HorizontalAlignment="Stretch" MouseDown="managementCard_MouseDown" >
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="236*"/>
+                    <RowDefinition Height="74*"/>
+                </Grid.RowDefinitions>
+                <Image HorizontalAlignment="Stretch" Grid.Row ="0"  VerticalAlignment="Stretch" Source="pizza_oven.jpg" Stretch="UniformToFill"/>
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Grid.Row="1" Margin="8" FontFamily="Roboto Light"> Management </TextBlock>
+            </Grid>
+        </materialDesign:Card>
+        <Rectangle></Rectangle>
+
+    </Grid>
+</Page>
