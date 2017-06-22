@@ -26,22 +26,61 @@ namespace PL_Material
     /// </summary>
     public partial class CustomerPage : Page
     {
+        private IDatabase db = FactoryDatabase.getDatabase();
         public CustomerPage()
         {
             InitializeComponent();
             //this.customerDataGrid.ItemsSource = Database.customerDataSet.Tables[0].DefaultView;
-            this.customerDataGrid.ItemsSource = DataSource.getCustomerList();
+            this.customerDataGrid.ItemsSource = DataSource.customers;
+//            DataSource.customers.CollectionChanged += (sender, e) =>
+//            {
+//                if (e.Action == NotifyCollectionChangedAction.Add)
+//                {
+//                    var item = e.NewItems[0] as Customer;
+//                }
+//                
+//            };
+
+        }
+
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             
+            NavigationService?.Navigate(new AddCustomerPage());
+        }
+
+        private void DeleteCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var obj = ((FrameworkElement)sender).DataContext as Customer;
+                if (obj != null) FactoryDatabase.getDatabase().delCustomer(obj.CustID);
+                DataSource.setCustomerList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void customerDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var newItem = e.Row.DataContext as Customer;
-                newItem.CustID = FactoryDatabase.getDatabase().getNewCustomerID();
-                
-            }
+            var row = (e.Row).DataContext as Customer;
+            FactoryDatabase.getDatabase().updateCustomer(row.CustID, row);
+            DataSource.setCustomerList();
         }
+
+
+
+
+        //        private void customerDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        //        {
+        //            if (e.EditAction == DataGridEditAction.Commit)
+        //            {
+        //                Customer c = e.Row.DataContext as Customer;
+        //            }
+        //        }
     }
 }

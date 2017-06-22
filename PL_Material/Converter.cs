@@ -17,7 +17,7 @@ namespace PL_Material
             var custID = value as int?;
             try
             {
-                var firstOrDefault = DataSource.getCustomerList().FirstOrDefault(x => x.CustID == custID);
+                var firstOrDefault = DataSource.customers.FirstOrDefault(x => x.CustID == custID);
                 if (firstOrDefault != null)
                     return firstOrDefault.CustName;
             }

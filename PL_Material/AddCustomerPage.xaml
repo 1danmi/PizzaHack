@@ -1,0 +1,63 @@
+﻿<Page x:Class="PL_Material.AddCustomerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL_Material"
+      mc:Ignorable="d" 
+      xmlns:BE="clr-namespace:BE;assembly=BE"
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="NewOrderPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="64"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="0" Fill="#FF212121" Grid.ColumnSpan="4" Stroke="#00000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <Rectangle.Effect>
+                <DropShadowEffect Direction="270" ShadowDepth="2" Color="#FF424242" BlurRadius="3"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <TextBlock Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" FontSize="50" Margin="0,40,0,0" HorizontalAlignment="Center" Text="New Customer" FontFamily="Roboto Light" ></TextBlock>
+        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
+            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
+        </Button>
+        <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
+        <Grid x:Name="customerGrid" Grid.Row="2" Grid.Column="1" d:DataContext="{d:DesignInstance Type=BE:Customer}" Margin="0,100,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="1" FontSize="22" HorizontalAlignment="Left"  Margin="0,8,0,0" TextWrapping="Wrap" Text="{Binding CustName, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218"/>
+            <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Margin="0,10,0,0"/>
+            <TextBox Grid.Column="1" FontSize="22" HorizontalAlignment="Left"  Margin="0,67,0,0" TextWrapping="Wrap" Text="{Binding CustAddress, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218"/>
+            <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address:" VerticalAlignment="Top" Margin="0,69,0,0" RenderTransformOrigin="0.282,0.539"/>
+            <TextBox Grid.Column="1" FontSize="22" HorizontalAlignment="Left"  Margin="0,127,0,0" TextWrapping="Wrap" Text="{Binding CustPhoneNum, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218"/>
+            <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Phone Number:" VerticalAlignment="Top" Margin="0,129,0,0" RenderTransformOrigin="0.282,0.539"/>
+            <TextBox Grid.Column="1" FontSize="22" HorizontalAlignment="Left"  Margin="0,179,0,0" TextWrapping="Wrap" Text="{Binding CustCc, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218"/>
+            <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="4 Last CC Digit:" VerticalAlignment="Top" Margin="0,181,0,0" RenderTransformOrigin="0.282,0.539"/>
+            <TextBox Grid.Column="1" FontSize="22"  HorizontalAlignment="Left"  Margin="0,229,0,0" TextWrapping="Wrap" Text="{Binding CustCredit, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" AutomationProperties.HelpText="Credit Points"/>
+            <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Credit:" VerticalAlignment="Top" Margin="0,231,0,0" RenderTransformOrigin="0.301,-0.448"/>
+
+        </Grid>
+        <Button Content="Add Customer" Background="#424242" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="auto" Height="40" Click="addButton_Click" Grid.ColumnSpan="2" Margin="0,10,10,0" />
+
+
+    </Grid>
+</Page>
