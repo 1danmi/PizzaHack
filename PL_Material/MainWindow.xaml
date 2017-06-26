@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PL_Material"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1000"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        BorderBrush="#212121"
+        BorderThickness="1">
 
     <Frame x:Name="MainFrame" BorderThickness="0,0,0,0"  NavigationUIVisibility="Hidden" Background="White" Margin="0,0,0,0"/>
 

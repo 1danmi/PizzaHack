@@ -14,6 +14,7 @@ namespace DAL
 
         void loadLists();
 
+
         #region Customer
 
         void addCustomer(Customer d);
@@ -157,6 +158,8 @@ namespace DAL
         List<ToppingType> getToppingTypes();
 
         int getNewCustomerID();
+
+        int getNewOrderID();
 
         #endregion
 

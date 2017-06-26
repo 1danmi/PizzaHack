@@ -18,15 +18,15 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
-            <RowDefinition Height="64"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="64"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
         <Rectangle Grid.Column="0" Fill="#FF212121" Grid.ColumnSpan="4" Stroke="#00000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
             <Rectangle.Effect>
@@ -42,7 +42,7 @@
                 <DataGridCheckBoxColumn Header="Kosher" Binding="{Binding Kosher}"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
+        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="12,16,950,16" Grid.ColumnSpan="2">
             <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
         </Button>
         <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />

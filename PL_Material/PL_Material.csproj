@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PL_Material</RootNamespace>
     <AssemblyName>PL_Material</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -64,6 +64,12 @@
     <Compile Include="AddCustomerPage.xaml.cs">
       <DependentUpon>AddCustomerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetCustomerIDWindow.xaml.cs">
+      <DependentUpon>GetCustomerIDWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewOrderDetailsPage.xaml.cs">
+      <DependentUpon>NewOrderDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StoresPage.xaml.cs">
       <DependentUpon>StoresPage.xaml</DependentUpon>
     </Compile>
@@ -80,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ExamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetCustomerIDWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +123,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManagmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewOrderDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,10 +208,6 @@
       <Project>{0fd0d913-d4d2-4adf-bc0e-6ae7d3aaaf86}</Project>
       <Name>BE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BL\BL.csproj">
-      <Project>{70d809fa-1f35-4125-b92b-c971acd0473e}</Project>
-      <Name>BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{8eaf4e33-346f-4d0e-8a71-6e427b61cfb1}</Project>
       <Name>DAL</Name>
@@ -206,6 +216,21 @@
       <Project>{f5518a82-b543-44e3-a53c-e40a02d0e99c}</Project>
       <Name>DS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="handwritten-italian-marketing-menu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="close_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pizza-2341377_1920.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="food-pizza-box-chalkboard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

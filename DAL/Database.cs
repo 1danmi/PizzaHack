@@ -692,6 +692,27 @@ namespace DAL
             return i;
         }
 
+        public int getNewOrderID()
+        {
+            bool flag;
+            int i;
+            for (i = 1; i < 100000; i++)
+            {
+                flag = true;
+                foreach (var store in DataSource.stores)
+                {
+                    if (i == store.StoreID)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                    return i;
+            }
+            return i;
+        }
+
         #endregion
     }
 }

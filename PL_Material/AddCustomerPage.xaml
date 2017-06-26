@@ -56,7 +56,7 @@
             <TextBlock Grid.Column="0" Grid.Row="0"  FontSize="24" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Credit:" VerticalAlignment="Top" Margin="0,231,0,0" RenderTransformOrigin="0.301,-0.448"/>
 
         </Grid>
-        <Button Content="Add Customer" Background="#424242" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="auto" Height="40" Click="addButton_Click" Grid.ColumnSpan="2" Margin="0,10,10,0" />
+        <Button Content="Add Customer" Background="#424242" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="auto" Height="40" Click="addButton_Click" Grid.ColumnSpan="2" Margin="0,12,12,0" />
 
 
     </Grid>

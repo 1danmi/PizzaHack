@@ -35,7 +35,7 @@
             </Rectangle.Effect>
         </Rectangle>
         <Button Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
-            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
+            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"  />
         </Button>
         <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
         <materialDesign:Card x:Name="employeesCard" Margin="8,8,8,8" Grid.Row="2" Width="400" Height="270" Grid.Column="1" MouseDown="employeesCard_MouseDown" >

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BE;
 
 namespace PL_Material
 {
@@ -13,5 +14,6 @@ namespace PL_Material
     /// </summary>
     public partial class App : Application
     {
+        public static Order currentOrder = new Order();
     }
 }
