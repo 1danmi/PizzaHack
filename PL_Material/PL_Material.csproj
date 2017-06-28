@@ -70,6 +70,12 @@
     <Compile Include="NewOrderDetailsPage.xaml.cs">
       <DependentUpon>NewOrderDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PizzasPage.xaml.cs">
+      <DependentUpon>PizzasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueriesPage.xaml.cs">
+      <DependentUpon>QueriesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StoresPage.xaml.cs">
       <DependentUpon>StoresPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +141,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PizzasPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueriesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

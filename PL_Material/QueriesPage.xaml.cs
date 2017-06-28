@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,21 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BE;
 using DAL;
 
 namespace PL_Material
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for QueriesPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class QueriesPage : Page
     {
-        public MainWindow()
+        private IDatabase db = FactoryDatabase.getDatabase();
+
+        public QueriesPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new MainPage());
-            
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            firstText.Text = db.promotion_average_credit().ToString();
+        }
+        
     }
 }

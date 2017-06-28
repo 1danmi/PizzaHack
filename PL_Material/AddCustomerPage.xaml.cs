@@ -36,7 +36,9 @@ namespace PL_Material
 
             customer.CustID = FactoryDatabase.getDatabase().getNewCustomerID();
             FactoryDatabase.getDatabase().addCustomer(customer);
-            DataSource.setCustomerList();
+            if (FactoryDatabase.getDatabase().new_customers(customer.CustID))
+                MessageBox.Show($"You are the {customer.CustID}th customer! You won an extra credit!");
+            FactoryDatabase.getDatabase().loadLists();
             NavigationService?.GoBack();
         }
     }

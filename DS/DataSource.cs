@@ -28,7 +28,7 @@ namespace DS
 
         public static void setCustomerList()
         {
-           RemoveAllCustomers();
+            RemoveAllCustomers();
             foreach (DataRow row in customers_dt.Tables[0].Rows)
             {
                 if (!(row["CUSTID"] is DBNull)  && !(row["CUSTNAME"] is DBNull))
@@ -51,7 +51,6 @@ namespace DS
             for (var i = customers.Count - 1; i >= 0; i--)
             {
                 customers.RemoveAt(i);
-                
             }
         }
     }

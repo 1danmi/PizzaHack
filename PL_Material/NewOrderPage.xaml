@@ -27,32 +27,30 @@
             <RowDefinition Height="64"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="64"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" FontSize="40" Margin="0,26,250,0" HorizontalAlignment="Center" Text="New Order" FontFamily="Roboto Light" VerticalAlignment="Top" />
-        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
-            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
-        </Button>
+      
         <Grid x:Name="customerGrid" Grid.Row="2" Grid.Column="1" d:DataContext="{d:DesignInstance Type=BE:Customer}" Margin="0,40,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,0,0,0"    Width="218" TextWrapping="Wrap" Text="{Binding CustName, Mode=OneWayToSource}"/>
+            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,0,0,0"    x:Name="nameTextBox" Width="218" TextWrapping="Wrap" Text="{Binding CustName, Mode=OneWayToSource}"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,10,0,0"   TextWrapping="Wrap" Text="Name:"                                        />
-            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,50,0,0"   Width="218" TextWrapping="Wrap" Text="{Binding CustAddress, Mode=OneWayToSource}"/>
+            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,50,0,0"   x:Name="addressTextBox" Width="218" TextWrapping="Wrap" Text="{Binding CustAddress, Mode=OneWayToSource}"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,60,0,0"   TextWrapping="Wrap" Text="Address:"                                      />
-            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,100,0,0"  Width="218" TextWrapping="Wrap" Text="{Binding CustPhoneNum, Mode=OneWayToSource}"/>
+            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,100,0,0"  x:Name="phoneTextBox" Width="218" TextWrapping="Wrap" Text="{Binding CustPhoneNum, Mode=OneWayToSource}"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,110,0,0"  TextWrapping="Wrap" Text="Phone Number:"                                />
-            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,150,0,0"  Width="218" TextWrapping="Wrap" Text="{Binding CustCc, Mode=OneWayToSource}"/>
+            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,150,0,0"  x:Name="ccTextBox" Width="218" TextWrapping="Wrap" Text="{Binding CustCc, Mode=OneWayToSource}"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,160,0,0"  TextWrapping="Wrap" Text="4 Last CC Digit:"                             />
-            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,200,0,0"  Width="218" TextWrapping="Wrap" Text="{Binding CustCredit, Mode=OneWayToSource}"/>
+            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,200,0,0"  x:Name="creditTextBox" Width="218" TextWrapping="Wrap" Text="{Binding CustCredit, Mode=OneWayToSource}"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,210,0,0"  TextWrapping="Wrap" Text="Credit:" />
             <ComboBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,250,0,0"  Width="218" x:Name="storesComboBox" IsEditable="True"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,260,0,0"  TextWrapping="Wrap" Text="Store:"  />
             <Button    Grid.Column="0" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,340,0,0"  Content="Existing Customer?" Padding ="0" Background="Transparent" BorderBrush="Transparent" Foreground="#212121"  HorizontalContentAlignment="Left" FontFamily="Roboto Light"  Click="Button_Click" />
-            <CheckBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,310,0,0" x:Name="delivCheckBox" Content="Delivery"      />
+            <CheckBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,310,0,0"  x:Name="delivCheckBox" Content="Delivery"      />
 
 
         </Grid>
@@ -66,6 +64,10 @@
         </Rectangle>
         <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
         <Button x:Name="nextButton" Content="Next" Grid.Column="1" BorderBrush="#f44336" FontSize="24" FontFamily="Roboto Light" Background="#f44336" Padding="10,15,10,15" HorizontalAlignment="Center" Margin="0,435,0,0" Grid.Row="2" VerticalAlignment="Top" Width="359" Height="56" Click="nextButton_Click" />
-
+        <Button Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000"
+                Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch" Margin="12,16,20,16">
+            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        </Button>
     </Grid>
 </Page>

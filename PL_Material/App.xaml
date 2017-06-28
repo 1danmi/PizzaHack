@@ -20,6 +20,9 @@
             <local:RankIDtoNameConverter x:Key="RankIDtoNameConverter"/>
             <local:RankIDtoSalaryConverter x:Key="RankIDtoSalaryConverter"/>
             <local:DateTimetoDateConverter x:Key="DateTimetoDateConverter"/>
+            <local:BaseIDtoDoughConverter x:Key="BaseIDtoDoughConverter"/>
+            <local:BaseIDtoSizeConverter x:Key="BaseIDtoSizeConverter"/>
+            <local:ToppingIDtoNameConverter x:Key="ToppingIDtoNameConverter"/>
         </ResourceDictionary>
         
     </Application.Resources>

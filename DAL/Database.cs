@@ -13,6 +13,7 @@ using Oracle.DataAccess.Client;
 using OracleCommand = Oracle.DataAccess.Client.OracleCommand;
 using OracleConnection = Oracle.DataAccess.Client.OracleConnection;
 using OracleDataAdapter = Oracle.DataAccess.Client.OracleDataAdapter;
+using OracleParameter = Oracle.DataAccess.Client.OracleParameter;
 
 //using System.Data.OracleClient;
 
@@ -23,6 +24,7 @@ namespace DAL
     {
         private const string constr = "Data Source=XE;Persist Security Info=True;User ID=PizzaHack;Password=123";
         private static readonly OracleDataAdapter customerAdapter = new OracleDataAdapter();
+//        private static readonly OracleDataAdapter ordersAdapter = new OracleDataAdapter();
         private static OracleCommand objInsertCmd;
         private static readonly OracleConnection objConn = new OracleConnection(constr);
 
@@ -41,6 +43,57 @@ namespace DAL
             var reader = cmd.ExecuteNonQuery();
 
             return null;
+        }
+
+
+        public int promotion_average_credit()
+        {
+            var con = new OracleConnection(constr);
+            con.Open();
+            var objCmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "Tables.promotion_average_credit",
+                CommandType = CommandType.StoredProcedure
+            };
+            var prm = new OracleParameter
+            {
+                Direction = ParameterDirection.ReturnValue,
+                DbType = DbType.Int64
+            };
+
+            objCmd.Parameters.Add(prm);
+            
+            objCmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(objCmd.Parameters[0].Value);
+
+        
+        }
+
+        public bool new_customers(int id)
+        {
+            var con = new OracleConnection(constr);
+            con.Open();
+            var objCmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "Tables.new_customers",
+                CommandType = CommandType.StoredProcedure
+            };
+            var prm = new OracleParameter
+            {
+                Direction = ParameterDirection.ReturnValue,
+                DbType = DbType.Int64
+            };
+
+            objCmd.Parameters.Add(prm);
+            objCmd.Parameters.Add("new_cust", OracleDbType.Int64).Direction = ParameterDirection.Input;
+            objCmd.Parameters["new_cust"].Value = id;
+
+            objCmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(objCmd.Parameters[0].Value)==1;
         }
 
         public void loadLists()
@@ -65,7 +118,8 @@ namespace DAL
         {
             if (objConn.State != ConnectionState.Open)
                 objConn.Open();
-            DataSource.customers_dt.Tables[0].Rows.Add(Convert.ToDecimal(d.CustID), d.CustName, d.CustAddress, d.CustPhoneNum,
+            DataSource.customers_dt.Tables[0].Rows.Add(Convert.ToDecimal(d.CustID), d.CustName, d.CustAddress,
+                d.CustPhoneNum,
                 d.CustCc, Convert.ToDecimal(d.CustCredit));
             customerAdapter.Update(DataSource.customers_dt);
         }
@@ -169,7 +223,24 @@ namespace DAL
 
         public void addOrder(Order d)
         {
-            throw new NotImplementedException();
+            var con = new OracleConnection(constr);
+            con.Open();
+            var cmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "insert into Orders values (:ORDERID, :ORDERDELIV, :CUSTID, :STOREID)"
+
+            };
+            cmd.Parameters.Add("ORDERID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["ORDERID"].Value = d.OrderID;
+            cmd.Parameters.Add("ORDERDELIV", OracleDbType.Char).Direction = ParameterDirection.Input;
+            cmd.Parameters["ORDERDELIV"].Value = d.OrderDeliv?1:0;
+            cmd.Parameters.Add("CUSTID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["CUSTID"].Value = d.CustID;
+            cmd.Parameters.Add("STOREID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["STOREID"].Value = d.StoreID;
+
+            cmd.ExecuteNonQuery();
         }
 
         public bool delOrder(int orderID)
@@ -193,7 +264,27 @@ namespace DAL
 
         public void addPizza(Pizza d)
         {
-            throw new NotImplementedException();
+            var con = new OracleConnection(constr);
+            con.Open();
+            var cmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "insert into pizza values (:BASEID, :ORDERID, :TOPPINGIDL, :TOPPINGIDR, :PIZZAID)"
+
+            };
+            cmd.Parameters.Add("BASEID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["BASEID"].Value = d.BaseID;
+            cmd.Parameters.Add("ORDERID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["ORDERID"].Value = d.OrderID;
+            cmd.Parameters.Add("TOPPINGIDL", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["TOPPINGIDL"].Value = d.ToppingIdL;
+            cmd.Parameters.Add("TOPPINGIDR", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["TOPPINGIDR"].Value = d.ToppingIdR;
+            cmd.Parameters.Add("PIZZAID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["PIZZAID"].Value = d.PizzaID;
+
+            cmd.ExecuteNonQuery();
+            DataSource.pizzas = getPizzas();
         }
 
         public bool delPizza(int pizzaID)
@@ -217,7 +308,23 @@ namespace DAL
 
         public void addPizzaBase(PizzaBase d)
         {
-            throw new NotImplementedException();
+            var con = new OracleConnection(constr);
+            con.Open();
+            var cmd = new OracleCommand
+            {
+                Connection = con,
+                CommandText = "insert into pizzabase values (:BASEID, :PBSID, :DOUGH)"
+
+            };
+            cmd.Parameters.Add("BASEID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["BASEID"].Value = d.BaseID;
+            cmd.Parameters.Add("PBSID", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["PBSID"].Value = d.PbsID;
+            cmd.Parameters.Add("DOUGH", OracleDbType.Decimal).Direction = ParameterDirection.Input;
+            cmd.Parameters["DOUGH"].Value = d.Dough;
+
+            cmd.ExecuteNonQuery();
+            DataSource.pizzasBase = getPizzaBases();
         }
 
         public bool delPizzaBase(int PBID)
@@ -419,36 +526,22 @@ namespace DAL
             customerAdapter.UpdateCommand = objUpdateCmd;
 
 
-
             var objDeleteCmd = new OracleCommand
             {
                 Connection = objConn,
                 CommandText = "tables.deletecustomer",
                 CommandType = CommandType.StoredProcedure
             };
-            objDeleteCmd.Parameters.Add("p_CUSTID", OracleDbType.Decimal, 38, "CUSTID").Direction = ParameterDirection.Input;
+            objDeleteCmd.Parameters.Add("p_CUSTID", OracleDbType.Decimal, 38, "CUSTID").Direction =
+                ParameterDirection.Input;
             customerAdapter.DeleteCommand = objDeleteCmd;
-
-//            try
-//            {
-//                objConn.Open();
-//                objCmd.ExecuteNonQuery();
-//                var da = new OracleDataAdapter(objCmd);
-//                customerAdapter.Fill(DataSource.customers_dt);
-//
-//                objInsertCmd.ExecuteNonQuery();
-//
-//            }
-//            catch (Exception ex)
-//            {
-//                MessageBox.Show(ex.Message);
-//            }
         }
 
         public void getCustomers2()
         {
             try
             {
+                DataSource.customers_dt.Clear();
                 customerAdapter.Fill(DataSource.customers_dt);
                 DataSource.setCustomerList();
             }
@@ -699,9 +792,51 @@ namespace DAL
             for (i = 1; i < 100000; i++)
             {
                 flag = true;
-                foreach (var store in DataSource.stores)
+                foreach (var order in DataSource.orders)
                 {
-                    if (i == store.StoreID)
+                    if (i == order.OrderID)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                    return i;
+            }
+            return i;
+        }
+
+        public int getNewPizzaID()
+        {
+            bool flag;
+            int i;
+            for (i = 1; i < 100000; i++)
+            {
+                flag = true;
+                foreach (var pizza in DataSource.pizzas)
+                {
+                    if (i == pizza.PizzaID)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                    return i;
+            }
+            return i;
+        }
+
+        public int getNewPizzaBaseID()
+        {
+            bool flag;
+            int i;
+            for (i = 1; i < 100000; i++)
+            {
+                flag = true;
+                foreach (var pizzaBase in DataSource.pizzasBase)
+                {
+                    if (i == pizzaBase.BaseID)
                     {
                         flag = false;
                         break;

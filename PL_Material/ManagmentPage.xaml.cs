@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DAL;
 
 namespace PL_Material
 {
@@ -23,6 +24,8 @@ namespace PL_Material
         public ManagementPage()
         {
             InitializeComponent();
+            var bl = FactoryDatabase.getDatabase();
+            bl.loadLists();
         }
 
         private void customersCard_MouseDown(object sender, MouseButtonEventArgs e)

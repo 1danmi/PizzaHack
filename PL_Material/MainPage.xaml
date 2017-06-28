@@ -60,6 +60,9 @@
             </Grid>
         </materialDesign:Card>
         <Rectangle></Rectangle>
+        <Button Content="Queries Page" BorderThickness="0" Background="#424242" Grid.Column="1" Height="40"
+                HorizontalAlignment="right" VerticalAlignment="Top"  Grid.ColumnSpan="3"
+                Margin="0,10,10,0" Click="Button_Click" />
 
     </Grid>
 </Page>

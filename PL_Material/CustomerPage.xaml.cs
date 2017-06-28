@@ -30,17 +30,7 @@ namespace PL_Material
         public CustomerPage()
         {
             InitializeComponent();
-            //this.customerDataGrid.ItemsSource = Database.customerDataSet.Tables[0].DefaultView;
             this.customerDataGrid.ItemsSource = DataSource.customers;
-//            DataSource.customers.CollectionChanged += (sender, e) =>
-//            {
-//                if (e.Action == NotifyCollectionChangedAction.Add)
-//                {
-//                    var item = e.NewItems[0] as Customer;
-//                }
-//                
-//            };
-
         }
 
        
@@ -71,16 +61,5 @@ namespace PL_Material
             FactoryDatabase.getDatabase().updateCustomer(row.CustID, row);
             DataSource.setCustomerList();
         }
-
-
-
-
-        //        private void customerDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        //        {
-        //            if (e.EditAction == DataGridEditAction.Commit)
-        //            {
-        //                Customer c = e.Row.DataContext as Customer;
-        //            }
-        //        }
     }
 }

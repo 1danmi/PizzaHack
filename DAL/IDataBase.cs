@@ -14,6 +14,9 @@ namespace DAL
 
         void loadLists();
 
+        int promotion_average_credit();
+
+        bool new_customers(int id);
 
         #region Customer
 
@@ -160,6 +163,10 @@ namespace DAL
         int getNewCustomerID();
 
         int getNewOrderID();
+
+        int getNewPizzaID();
+
+        int getNewPizzaBaseID();
 
         #endregion
 

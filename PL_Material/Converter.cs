@@ -132,4 +132,77 @@ namespace PL_Material
             throw new NotImplementedException();
         }
     }
+
+    public class BaseIDtoDoughConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return 0;
+            var baseid = (int)value;
+            try
+            {
+                var dough = DataSource.pizzasBase.FirstOrDefault(x => x.BaseID == baseid);
+                return DataSource.doughs.FirstOrDefault(x => x.DoughID == dough.Dough).Name;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BaseIDtoSizeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return 0;
+            var baseid = (int)value;
+            try
+            {
+                var pBase = DataSource.pizzasBase.FirstOrDefault(x => x.BaseID == baseid);
+                return DataSource.pbSize.FirstOrDefault(x => x.PbsID == pBase.PbsID).PdsSize;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ToppingIDtoNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return 0;
+            var toppingid = (int)value;
+            try
+            {
+                return DataSource.toppingTypes.FirstOrDefault(x => x.TopTypeID == toppingid).TopTypeName;
+                 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

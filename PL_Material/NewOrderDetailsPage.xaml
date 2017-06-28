@@ -31,9 +31,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" FontSize="40" Margin="0,26,250,0" HorizontalAlignment="Center" Text="New Pizza" FontFamily="Roboto Light" VerticalAlignment="Top" />
-        <Button   Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000" Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Margin="12">
-            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
-        </Button>
+
         <Grid x:Name="customerGrid" Grid.Row="2" Grid.Column="1" d:DataContext="{d:DesignInstance Type=BE:Customer}" Margin="0,40,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -47,12 +45,12 @@
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,110,0,0"  TextWrapping="Wrap" Text="Right Topping:"                                />
             <ComboBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,150,0,0"  Width="218"  x:Name="leftComboBox" IsEditable="True"/>
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,160,0,0"  TextWrapping="Wrap" Text="Left Topping:"                             />
-<!--            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,200,0,0"  Width="218" TextWrapping="Wrap" Text="{Binding CustCredit, Mode=OneWayToSource}"/>-->
-<!--            <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,210,0,0"  TextWrapping="Wrap" Text="Credit:" />-->
-<!--            <ComboBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,250,0,0"  Width="218" x:Name="storesComboBox" IsEditable="True"/>-->
-<!--            <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,260,0,0"  TextWrapping="Wrap" Text="Store:"  />-->
-<!--            <Button    Grid.Column="0" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,340,0,0"  Content="Existing Customer?" Padding ="0" Background="Transparent" BorderBrush="Transparent" Foreground="#212121"  HorizontalContentAlignment="Left" FontFamily="Roboto Light"  Click="Button_Click" />-->
-<!--            <CheckBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,310,0,0"  x:Name="delivCheckBox" Content="Delivery"      />-->
+            <!--            <TextBox   Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,200,0,0"  Width="218" TextWrapping="Wrap" Text="{Binding CustCredit, Mode=OneWayToSource}"/>-->
+            <!--            <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,210,0,0"  TextWrapping="Wrap" Text="Credit:" />-->
+            <!--            <ComboBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,250,0,0"  Width="218" x:Name="storesComboBox" IsEditable="True"/>-->
+            <!--            <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,260,0,0"  TextWrapping="Wrap" Text="Store:"  />-->
+            <!--            <Button    Grid.Column="0" FontSize="18" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,340,0,0"  Content="Existing Customer?" Padding ="0" Background="Transparent" BorderBrush="Transparent" Foreground="#212121"  HorizontalContentAlignment="Left" FontFamily="Roboto Light"  Click="Button_Click" />-->
+            <!--            <CheckBox  Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,310,0,0"  x:Name="delivCheckBox" Content="Delivery"      />-->
 
 
         </Grid>
@@ -65,7 +63,12 @@
             </Rectangle.Effect>
         </Rectangle>
         <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" Content="PizzaHack" VerticalAlignment="Center" FontSize="36" FontFamily="Roboto Light" />
-        <Button x:Name="nextButton" Content="Next" Grid.Column="1" BorderBrush="#f44336" FontSize="24" FontFamily="Roboto Light" Background="#f44336" Padding="10,15,10,15" HorizontalAlignment="Center" Margin="0,270,0,0" Grid.Row="2" VerticalAlignment="Top" Width="359" Height="56" Click="nextButton_Click" />
-
+        <Button x:Name="addButton" Content="Add More" Grid.Column="1" BorderBrush="#f44336" FontSize="24" FontFamily="Roboto Light" Background="#f44336" Padding="10,15,10,15" HorizontalAlignment="Center" Margin="10,288,246,0" Grid.Row="2" VerticalAlignment="Top" Width="180" Height="56" Click="addButton_Click" />
+        <Button x:Name="FinishButton" Content="Finish" Grid.Column="1" BorderBrush="#f44336" FontSize="24" FontFamily="Roboto Light" Background="#f44336" Padding="10,15,10,15" HorizontalAlignment="Center" Margin="246,288,10,0" Grid.Row="2" VerticalAlignment="Top" Width="180" Height="56" Click="FinishButton_Click" />
+        <Button Grid.Row="0" Command="{x:Static NavigationCommands.BrowseBack}" Grid.Column="0" Background="#00000000"
+                Foreground="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch" Margin="12,16,20,16">
+            <Image Source="back.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        </Button>
     </Grid>
 </Page>

@@ -64,13 +64,12 @@ namespace PL_Material
                 var c = DataSource.customers.FirstOrDefault(x => x.CustID == customer.CustID);
                 if ( c== null)
                     throw new Exception("Order doesn't exist!");
-                //if (db.getOrder(customer.OrderID).Time.Date != DateTime.Now.Date)
-                //    throw new Exception("You can change only customer from today!");
                 var w = this.Owner as MainWindow;
                 var t = w.MainFrame.Content as NewOrderPage;
                 var p = new NewOrderDetailsPage();
                 App.currentOrder.CustID = c.CustID;
                 t.NavigationService.Navigate(p);
+                db.addOrder(App.currentOrder);
                 var w2 = Window.GetWindow(this) as GetCustomerIDWindow;
                 w2.Close();
             }

@@ -34,5 +34,10 @@ namespace PL_Material
         {
             this.NavigationService.Navigate(new ManagementPage());
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService?.Navigate(new QueriesPage());
+        }
     }
 }
